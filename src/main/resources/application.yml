@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: consul
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        instance-id: ${spring.application.name}:${server.port}
+server:
+  port: 8080
+
+uri:
+  httpbin: "http://httpbin.org:80"
