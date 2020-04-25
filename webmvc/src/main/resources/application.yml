@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: webmvc
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        instance-id: ${spring.application.name}:${server.port}
+        health-check-critical-timeout: 30s
+        health-check-interval: 3s
+
+
+server:
+  port: 8080
+
+uri:
+  httpbin: "http://httpbin.org:80"
+
+# /book/**路由，会转发到http://{webmvc}/**  webmvc是consul注册的服务名
+zuul:
+  routes:
+    book:
+      path: /book/**
+      serviceId: webmvc
