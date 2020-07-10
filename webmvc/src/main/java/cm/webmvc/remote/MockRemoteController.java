@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import reactor.core.publisher.Mono;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,19 +20,19 @@ import java.util.Random;
 @RestController
 public class MockRemoteController {
 
-    @RequestMapping(value = "/remote/recommended")
-    public Mono<String> readingList(@RequestParam String name){
-        if (name.equals("1")) {
-            throw new RuntimeException("书店服务错误");
-        }
-        return Mono.just("Spring in Action (Manning), Cloud Native Java (O'Reilly), Learning Spring Boot (Packt)");
-    }
+//    @RequestMapping(value = "/remote/recommended")
+//    public Mono<String> readingList(@RequestParam String name){
+//        if (name.equals("1")) {
+//            throw new RuntimeException("书店服务错误");
+//        }
+//        return Mono.just("Spring in Action (Manning), Cloud Native Java (O'Reilly), Learning Spring Boot (Packt)");
+//    }
 
 
     @GetMapping("/remote/greeting")
-    public String greet() {
+    public String greet(@RequestParam("name") String name) {
         log.info("Access /remote/greeting");
-
+        log.info(name);
         List<String> greetings = Arrays.asList("Hi there", "Greetings", "Salutations");
         Random rand = new Random();
 
@@ -41,9 +40,10 @@ public class MockRemoteController {
         return greetings.get(randomNum);
     }
 
-    @GetMapping("/remote")
-    public String home() {
+    @GetMapping("/fuck/greeting")
+    public String home(@RequestParam("name") String name) {
         log.info("Access /remote");
+        log.info(name);
         return "Hi!";
     }
 

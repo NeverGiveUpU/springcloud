@@ -1,4 +1,5 @@
 package cm.webmvc.loadbalance;
+import cm.webmvc.loadbalance.test.TestConfiguration;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -9,9 +10,10 @@ import org.springframework.web.bind.annotation.RequestParam;
  *
  * 通过Feign访问外部服务，实现客户端负载均衡
  */
-@FeignClient(value = "webmvc")
+//@FeignClient(value = "webmvc")
+@FeignClient(value = "fuck", url = "hello", configuration = TestConfiguration.class)
 public interface FeignClientInterface {
 
-    @GetMapping("/remote/greeting")
+    @GetMapping("greeting")
     String hi(@RequestParam(value="name", defaultValue="Artaban") String name);
 }

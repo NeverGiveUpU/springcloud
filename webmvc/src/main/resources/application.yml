@@ -1,14 +1,14 @@
 spring:
 #  application:
 #    name: webmvc
-  cloud:
-    consul:
-      host: localhost
-      port: 8500
-      discovery:
-        instance-id: ${spring.application.name}:${server.port}
-        health-check-critical-timeout: 30s
-        health-check-interval: 3s
+#  cloud:
+#    consul:
+#      host: localhost
+#      port: 8500
+#      discovery:
+#        instance-id: ${spring.application.name}:${server.port}
+#        health-check-critical-timeout: 30s
+#        health-check-interval: 3s
 
 
 server:
@@ -24,10 +24,10 @@ zuul:
       path: /book/**
       serviceId: webmvc
 
-management:
-  server:
-    port: 8080
-  endpoints:
-    web:
-      exposure:
-        include: "*"
+#management:
+#  server:
+#    port: 8080
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"

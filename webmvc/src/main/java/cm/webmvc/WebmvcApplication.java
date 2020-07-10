@@ -1,19 +1,22 @@
 package cm.webmvc;
 
+import cm.webmvc.loadbalance.test.TestConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.web.client.RestTemplate;
 
 
-@EnableZuulProxy
+@ComponentScan(excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = TestConfiguration.class))
+@EnableAspectJAutoProxy
+//@EnableZuulProxy
 @EnableFeignClients
-@EnableCircuitBreaker
-@EnableDiscoveryClient
+//@EnableCircuitBreaker
+//@EnableDiscoveryClient
 @SpringBootApplication
 public class WebmvcApplication {
 
